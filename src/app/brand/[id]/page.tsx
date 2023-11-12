@@ -1,5 +1,5 @@
 import { NotFoundComponent } from "@/components/util/notFound";
-import { brandByIdAction } from "@/serverActions/brand/getbyId";
+import { brandByIdAction } from "@/serverActions/brand/getById";
 import { BrandProductListComponent } from "@/components/brand/productList";
 
 interface BrandByIdPageParams {
