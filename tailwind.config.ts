@@ -9,10 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'main-banner': "url('/assets/images/banner.png')",
       },
+      fontFamily: {
+        tenor: ['var(--font-tenor-sans)'],
+        bondoni: ['var(--font-bondoni-nova)'],
+      },
+      colors:{
+        'custom-orange' : '#DD8560',
+        'custom-white'  : '#D6D6D6',
+        'custom-black'  : '#000000',
+        'custom-gray-dark' : '#333333',
+        'custom-gray-reg' :  '#555555',
+        'custom-gray-ligth' :  '#888888',
+      }
     },
   },
   plugins: [],

@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  username      String
+  password      String
+  refresh_token RefreshToken[]
+  // UsersProducts UsersProduct[]
+  Cart          Cart?
+
+  @@map("users")
+}
+
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String 
+  Products  Product[]
+
+  @@map("brands")
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  imageUrl  String 
+  name      String
+  price     String
+  brand     Brand @relation(fields: [fk_brand_id], references: [id], onDelete: Cascade)
+  fk_brand_id  String
+  ProductCart  ProductCart[]
+
+  @@index([fk_brand_id])
+
+  
+  @@map("products")
+}
+
+model Cart {
+  id          String        @id @default(uuid())
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String        @unique
+  ProductCart ProductCart[]
+
+  @@map("carts")
+}
+
+model ProductCart {
+  id            String   @id @default(uuid())
+  product       Product  @relation(fields: [fk_id_product], references: [id], onDelete: Cascade)
+  fk_id_product String
+  cart          Cart     @relation(fields: [fk_id_cart], references: [id], onDelete: Cascade)
+  fk_id_cart    String
+  created_at    DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  quantity      Int      @default(0)
+
+  @@map("product_carts")
+}
+
+model RefreshToken {
+  id       String @id @default(uuid())
+  expireIn Int
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String @unique
+
+  @@map("refresh_tokens")
+}
