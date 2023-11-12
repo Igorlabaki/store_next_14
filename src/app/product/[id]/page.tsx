@@ -1,7 +1,7 @@
 import { NotFoundComponent } from "@/components/util/notFound";
 import {AddToBasketButton} from '@/components/util/addToBasket';
 import { ProductInfoComponent } from "@/components/product/info";
-import { productByIdAction } from '@/serverActions/product/getById';
+import { productByIdAction } from "@/serverActions/product/getById";
 import { ProductCardComponent } from '@/components/product/productCard';
 
 interface ProductByIdPageProps {
