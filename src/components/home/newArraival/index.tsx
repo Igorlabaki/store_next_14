@@ -6,10 +6,7 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { productListServerAction } from "@/serverActions/actions/product/list";
 
 export async function NewArraival() {
-  await queryClient.prefetchQuery({
-    queryKey: ["productList"],
-    queryFn: async () => await productListServerAction(undefined),
-  });
+
 
   return (
     <div className="font-tenor">
