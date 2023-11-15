@@ -1,6 +1,7 @@
 import { NotFoundComponent } from "@/components/util/notFound";
-import { brandByIdAction } from "@/serverActions/actions/brand/getById";
+
 import { BrandProductListComponent } from "@/components/brand/productList";
+import { brandByIdServerAction } from "@/serverActions/actions/brand/getById";
 
 interface BrandByIdPageParams {
   params: {
@@ -13,7 +14,7 @@ export default async function BrandByIdPage({
   params,
   searchParams,
 }: BrandByIdPageParams) {
-  const brandById = await brandByIdAction(params.id);
+  const brandById = await brandByIdServerAction(params.id);
 
   if (!brandById) {
     return <NotFoundComponent />;
