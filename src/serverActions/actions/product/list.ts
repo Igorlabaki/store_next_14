@@ -28,7 +28,7 @@ export const productListServerAction = async (search: string | undefined) => {
         return queryArgs;
     }
     
-    const listProductd = await prismaClient.product.findMany(query())
+    const listProductd = await prismaClient.product.findMany()
 
     return listProductd
 };

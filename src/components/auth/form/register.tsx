@@ -30,6 +30,7 @@ export default function RegisterComponent({
         ...data,
       })
       .then((resp: any) => {
+    
         if (resp.data?.message) {
           toast.error(resp.data?.message);
         }
