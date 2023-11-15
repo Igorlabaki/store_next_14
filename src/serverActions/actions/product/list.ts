@@ -7,14 +7,25 @@ export const productListServerAction = async (search: string | undefined) => {
 
   if (search && search != "All") {
     const listProductd = await prismaClient.product.findMany({
-      take:6
+      where: {
+        name: {
+          contains: search,
+        },
+      },
+      include: {
+        brand: true,
+      },
+      take: 6,
     });
 
     return listProductd;
   }
 
   const listProductd = await prismaClient.product.findMany({
-    take:6
+    include: {
+      brand: true,
+    },
+    take: 6
   });
 
   return listProductd;
