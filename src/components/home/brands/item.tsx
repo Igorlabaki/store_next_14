@@ -16,6 +16,7 @@ export function BrandItemListComponent({ brand }: BrandItemProps) {
         alt={brand.name}
         src={brand.imageUrl}
       />
+      <p>{brand.id}</p>
     </Link>
   );
 }
