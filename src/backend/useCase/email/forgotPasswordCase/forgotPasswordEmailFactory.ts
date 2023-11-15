@@ -1,7 +1,7 @@
+import { prismaClient } from '@/services/prismaClient';
 import { ForgotPasswordEmailCase } from './forgotPasswordEmailCase';
 import { ForgotPasswordEmailController } from './forgotPasswordEmailController';
 
-import { prismaClient } from '@/backend/prisma/client';
 import { PrismaUserRepository } from '@/backend/repository/inPrisma/prismaUserRepository';
 
 export const forgotPasswordEmailFactory = () => {

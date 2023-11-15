@@ -1,7 +1,7 @@
+import { prismaClient } from '@/services/prismaClient';
 import { VerifyEmailCase } from './verifyEmailCase';
 import { VerifyEmailController } from './verifyEmailController';
 
-import { prismaClient } from '@/backend/prisma/client';
 import { PrismaUserRepository } from '@/backend/repository/inPrisma/prismaUserRepository';
 
 export const verifyEmailFactory = () => {
