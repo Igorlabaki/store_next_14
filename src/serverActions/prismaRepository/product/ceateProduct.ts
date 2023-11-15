@@ -1,4 +1,4 @@
-"user server"
+"use server"
 import { prismaClient } from "@/services/prismaClient";
 
 export default async function createProduct(  ){
