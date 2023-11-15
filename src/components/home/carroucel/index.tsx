@@ -23,6 +23,9 @@ export async function CarroucelComponent() {
       </Link>
 
       <ButtonComponent title="cadastra" onClick={async ()  => {
+        await createBrand()
+      }}  />
+      <ButtonComponent title="cadastra" onClick={async ()  => {
         await createProduct()
       }}  />
     </div>
