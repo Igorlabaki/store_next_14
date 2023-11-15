@@ -6,6 +6,7 @@ import createProduct from "@/serverActions/prismaRepository/product/ceateProduct
 import Link from "next/link";
 
 export async function CarroucelComponent() {
+  const x = await createProduct()
   return (
     <div className="bg-main-banner min-h-[37.5rem] min-w-sreen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center relative">
       <div
@@ -21,12 +22,9 @@ export async function CarroucelComponent() {
       >
         <p className="text-white">EXPLORE COLLECTION</p>
       </Link>
-
       <ButtonComponent title="cadastra" onClick={async ()  => {
-        await createBrand()
-      }}  />
-      <ButtonComponent title="cadastra" onClick={async ()  => {
-        await createProduct()
+        x
+        console.log(x)
       }}  />
     </div>
   );
