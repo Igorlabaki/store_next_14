@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { Kumbh_Sans } from 'next/font/google';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Kumbh_Sans } from "next/font/google";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
-const kumbh_sans = Kumbh_Sans({ subsets: ['latin'], weight: '400' });
+const kumbh_sans = Kumbh_Sans({ subsets: ["latin"], weight: "400" });
 interface Props extends ButtonHTMLAttributes<any> {
   title?: string;
   className?: string;
@@ -11,12 +11,15 @@ interface Props extends ButtonHTMLAttributes<any> {
   titleClassname?: string;
 }
 
-export function ButtonComponent({ title, className, icon, titleClassname, ...rest }: Props) {
+export function ButtonComponent({
+  title,
+  className,
+  icon,
+  titleClassname,
+  ...rest
+}: Props) {
   return (
-    <button
-      {...rest}
-      className={`${className} ${kumbh_sans}`}
-    >
+    <button {...rest} className={`${className} ${kumbh_sans}`}>
       {icon ? icon : null}
       <p className={titleClassname}>{title}</p>
     </button>

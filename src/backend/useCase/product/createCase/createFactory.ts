@@ -1,4 +1,4 @@
-import { prismaClient } from "@/providers/prismaClient";
+import { prismaClient } from "@/services/prismaClient";
 import { CreateProductCase } from "./createCase";
 import { CreateProductController } from "./createController";
 import { PrismaProductRepository } from "@/backend/repository/inPrisma/prismaProductRepository";

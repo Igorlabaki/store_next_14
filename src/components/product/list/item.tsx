@@ -1,25 +1,53 @@
 import Link from "next/link";
 import { ProductIncludesBrand } from "@/types";
-import { AiOutlinePlus } from "react-icons/ai";
 import { ImageComponent } from "../../util/image";
+import { AuthOptions, getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AddToCartButton } from "@/components/util/addToBasket";
+import getCartByUserId from "@/serverActions/prismaRepository/cart/getCartByUserId";
+import verifyIfProductCartExistsServerAction from "@/serverActions/actions/productCard/verifyIfProductCartExist";
 
-interface ProductPageListItemProps{
-    product: ProductIncludesBrand;
+interface ProductPageListItemProps {
+  product: ProductIncludesBrand;
 }
 
-export  function ProductPageListItemComponent({product}: ProductPageListItemProps) {
+export async function ProductPageListItemComponent({
+  product,
+}: ProductPageListItemProps) {
+  const session: any = await getServerSession(authOptions as AuthOptions);
+  const useCart: any = await getCartByUserId(session?.user.id);
+  const pruductAlreadyInCart: any = await verifyIfProductCartExistsServerAction(
+    {
+      productId: product.id,
+      cartId: useCart.id,
+    }
+  );
   return (
-    <Link href={`/product/${product.id}`} className="flex h-[8.375rem] gap-x-[0.75rem]">
-        <ImageComponent h="h-[8.3rem]" w="w-[6.5rem]" containerClassname="rounded-sm overflow-hidden" alt={product.name} src={product.imageUrl}/>
-        <div className="flex flex-col gap-y-[0.5rem]">
-            <p className="text-[1.125rem] leading-[1.25rem]">{product.name}</p>
-            <p className="text-[0.875rem] leading-[1.25rem]">{product.brand.name}</p>
-            <p className="text-[0.93rem] text-custom-orange">{product.price}$</p>
-            <div className="bg-black w-full h-[2.75rem] flex items-center px-[1rem] gap-x-[0.5rem] rounded-md hover:scale-105 active:scale-95 duration-300">
-                <AiOutlinePlus className="text-[0.85rem] text-white"/>
-                <p className="text-[0.75rem] text-white ">ADD TO BASKET</p>
-            </div>
-        </div>
-    </Link>
-  )
+    <div
+     
+      className="flex h-[8.375rem] gap-x-[0.75rem]"
+    >
+      <Link  href={`/product/${product.id}`}>
+        <ImageComponent
+          h="h-[8.3rem]"
+          w="w-[6.5rem]"
+          containerClassname="rounded-sm overflow-hidden"
+          alt={product.name}
+          src={product.imageUrl}
+        />
+      </Link>
+      <div className="flex flex-col gap-y-[0.5rem]">
+        <p className="text-[1.125rem] leading-[1.25rem]">{product.name}</p>
+        <p className="text-[0.875rem] leading-[1.25rem]">
+          {product.brand.name}
+        </p>
+        <p className="text-[0.93rem] text-custom-orange">{product.price}$</p>
+        <AddToCartButton
+          productId={product.id}
+          userId={session.user.id}
+          pruductAlreadyInCart={pruductAlreadyInCart}
+        />
+      </div>
+    </div>
+  );
 }

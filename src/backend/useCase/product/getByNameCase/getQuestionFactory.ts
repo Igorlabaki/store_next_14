@@ -1,5 +1,5 @@
 import { GetByProductNameCase } from "./getByNameCase";
-import { prismaClient } from "@/providers/prismaClient";
+import { prismaClient } from "@/services/prismaClient";
 import { GetByProductNameController } from "./getByNameController";
 import { PrismaProductRepository } from "@/backend/repository/inPrisma/prismaProductRepository";
 

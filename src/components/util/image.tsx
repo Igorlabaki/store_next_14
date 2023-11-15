@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import Image from 'next/legacy/image';
-import React from 'react';
+import Image from "next/legacy/image";
+import React from "react";
 
 interface ImageComponentProps {
   w: string;
@@ -29,7 +29,7 @@ export function ImageComponent({
         priority
         alt={alt}
         layout="fill"
-        objectFit={'cover'}
+        objectFit={"cover"}
         className={`h-full w-full ${imageClassname}`}
         onClick={() => onclik && onclik()}
       />

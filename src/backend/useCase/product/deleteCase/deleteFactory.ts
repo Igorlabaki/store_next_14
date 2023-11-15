@@ -1,4 +1,4 @@
-import { prismaClient } from '@/providers/prismaClient';
+import { prismaClient } from '@/services/prismaClient';
 import { DeleteProductCase } from './deleteCase';
 import { DeleteProductController } from './deleteController';
 import { PrismaProductRepository } from '@/backend/repository/inPrisma/prismaProductRepository';

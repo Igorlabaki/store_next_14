@@ -1,18 +1,30 @@
-
 import Link from "next/link";
-import { ArrivalHeaderComponent } from './header';
-import { HiOutlineArrowRight } from 'react-icons/hi';
-import { ProductListComponent } from "../product/list";
+import { ArrivalContentComponent } from "./content";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import { queryClient } from "@/services/reactQueryClient";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import { productListServerAction } from "@/serverActions/actions/product/list";
 
-export  function NewArraival() {
+export async function NewArraival() {
+  await queryClient.prefetchQuery({
+    queryKey: ["productList"],
+    queryFn: async () => await productListServerAction(undefined),
+  });
+
   return (
     <div className="font-tenor">
-        <ArrivalHeaderComponent />
-        <ProductListComponent />
-        <div className="flex gap-x-[0.5rem] justify-center items-center w-full mt-[2.5rem]">
-          <Link href={'/product/list'} className="text-custom-gray-reg text-[1rem]">Explore More</Link>
-          <HiOutlineArrowRight className={"text-[1rem]"}/>
-        </div>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ArrivalContentComponent />
+      </HydrationBoundary>
+      <div className="flex gap-x-[0.5rem] justify-center items-center w-full mt-[2.5rem]">
+        <Link
+          href={"/product/list"}
+          className="text-custom-gray-reg text-[1rem]"
+        >
+          Explore More
+        </Link>
+        <HiOutlineArrowRight className={"text-[1rem]"} />
+      </div>
     </div>
-  )
+  );
 }
