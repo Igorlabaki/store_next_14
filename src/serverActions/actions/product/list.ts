@@ -22,9 +22,6 @@ export const productListServerAction = async (search: string | undefined) => {
   }
 
   const listProductd = await prismaClient.product.findMany({
-    include: {
-      brand: true,
-    },
     take: 6
   });
 
