@@ -1,4 +1,4 @@
-import NextAuth from "next-auth/next";
+import NextAuth from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { prismaClient } from '@/services/prismaClient';
@@ -89,7 +89,7 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: '/auth',
+    signIn: '/signin',
     error: '/',
   },
   session: {
