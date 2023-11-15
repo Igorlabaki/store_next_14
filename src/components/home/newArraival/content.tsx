@@ -6,7 +6,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { ProductItemComponent } from "../product/item";
 import { productListServerAction } from "@/serverActions/actions/product/list";
-import { queryClient } from "@/services/reactQueryClient";
 
 type SelectType = "All" | "Bag" | "Cardigan" | "Dress" | "Coat";
 
@@ -27,7 +26,7 @@ export function ArrivalContentComponent() {
   });
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['productList'] })
+    refetch();
   }, [topic, refetch]);
 
   return (

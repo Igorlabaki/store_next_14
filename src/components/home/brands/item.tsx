@@ -9,7 +9,13 @@ interface BrandItemProps {
 export function BrandItemListComponent({ brand }: BrandItemProps) {
   return (
     <Link href={`/brand/${brand.id}`}>
-      {brand.id}
+      <ImageComponent
+        h="h-[1rem]"
+        w="w-[8.3rem]"
+        imageClassname=""
+        alt={brand.name}
+        src={brand.imageUrl}
+      />
     </Link>
   );
 }
