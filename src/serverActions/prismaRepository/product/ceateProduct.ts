@@ -2,7 +2,7 @@
 import { prismaClient } from "@/services/prismaClient";
 
 export default async function createProduct(  ){
-    return await prismaClient.product.createMany({
+    const x =  await prismaClient.product.createMany({
        data:[
         {imageUrl:"https://res.cloudinary.com/dcjkvwbvh/image/upload/v1699712775/jy6tezx0vjmsigsujpfn.png",name: "Vest Angora", price:"150",fk_brand_id: "1f4820a2-a805-4270-8a67-474c8562cc6a"},
         {imageUrl:"https://res.cloudinary.com/dcjkvwbvh/image/upload/v1699712778/utsgsyub3wnc5z9tvpoh.png",name: "Cardigan Lime", price:"150",fk_brand_id: "46ce7fae-171b-4241-8886-415f918d358c"},
@@ -12,6 +12,8 @@ export default async function createProduct(  ){
         {imageUrl:"https://res.cloudinary.com/dcjkvwbvh/image/upload/v1699706308/o2l77izslzklxkk1gaj6.png",name: "Black Coat", price:"75",fk_brand_id: "f0fd9d7e-4806-4bc1-a043-a4aea086595e"},
        ],
     })
+    console.log(x)
+    return x
 }
 
 
