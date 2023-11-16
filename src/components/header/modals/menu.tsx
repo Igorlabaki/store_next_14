@@ -80,7 +80,7 @@ export function MenuModalComponent({ brandList }: MenuModalProps) {
                 icon={<GoSignOut size={20} />}
                 onClick={() => {
                   if (userData?.id) {
-                   console.log("dijeiojdeio")
+                   signOut();
                   } else {
                     replace("/auth");
                   }
