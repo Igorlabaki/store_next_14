@@ -1,8 +1,3 @@
-"use client"
-
-import { ButtonComponent } from "@/components/util/button";
-import createBrand from "@/serverActions/prismaRepository/brand/createBrand";
-import createProduct from "@/serverActions/prismaRepository/product/ceateProduct";
 import Link from "next/link";
 
 export async function CarroucelComponent() {
@@ -21,13 +16,6 @@ export async function CarroucelComponent() {
       >
         <p className="text-white">EXPLORE COLLECTION</p>
       </Link>
-
-      <ButtonComponent title="cadastra" onClick={async ()  => {
-        await createBrand()
-      }}  />
-      <ButtonComponent title="cadastra" onClick={async ()  => {
-        await createProduct()
-      }}  />
     </div>
   );
 }

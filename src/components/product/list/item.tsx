@@ -6,6 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { AddToCartButton } from "@/components/util/addToBasket";
 import getCartByUserId from "@/serverActions/prismaRepository/cart/getCartByUserId";
 import verifyIfProductCartExistsServerAction from "@/serverActions/actions/productCard/verifyIfProductCartExist";
+import getCartByUserIdServerAction from "@/serverActions/actions/cart/getCartById";
 
 interface ProductPageListItemProps {
   product: ProductIncludesBrand;
@@ -15,11 +16,11 @@ export async function ProductPageListItemComponent({
   product,
 }: ProductPageListItemProps) {
   const session: any = await getServerSession(authOptions as AuthOptions);
-  const useCart: any = await getCartByUserId(session?.user.id);
+  const useCart: any = await getCartByUserIdServerAction(session?.user.id);
   const pruductAlreadyInCart: any = await verifyIfProductCartExistsServerAction(
     {
       productId: product.id,
-      cartId: useCart.id,
+      cartId: useCart?.id,
     }
   );
   return (
@@ -36,17 +37,20 @@ export async function ProductPageListItemComponent({
           src={product.imageUrl}
         />
       </Link>
-      <div className="flex flex-col gap-y-[0.5rem]">
+      <div className="flex flex-col gap-y-[0.5rem] h-[8.3rem]">
         <p className="text-[1.125rem] leading-[1.25rem]">{product.name}</p>
         <p className="text-[0.875rem] leading-[1.25rem]">
-          {product.brand.name}
+          {product.brand?.name}
         </p>
         <p className="text-[0.93rem] text-custom-orange">{product.price}$</p>
-        <AddToCartButton
-          productId={product.id}
-          userId={session.user.id}
-          pruductAlreadyInCart={pruductAlreadyInCart}
-        />
+        <div className="flex-1 flex justify-end items-end">
+          <AddToCartButton
+            productId={product.id}
+            userId={session?.user?.id}
+            pruductAlreadyInCart={pruductAlreadyInCart}
+            className="h-[2.5rem]  text-black bg-gray-800"
+          />
+        </div>
       </div>
     </div>
   );

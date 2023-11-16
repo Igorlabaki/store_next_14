@@ -7,7 +7,7 @@ import { AuthOptions, Session, getServerSession } from "next-auth";
 import { ProductCardComponent } from "@/components/product/productCard";
 import { productByIdServerAction } from "@/serverActions/actions/product/getById";
 import verifyIfProductCartExistServerAction from "@/serverActions/actions/productCard/verifyIfProductCartExist";
-import getUserById from "@/serverActions/prismaRepository/user/getUserById";
+import getUserServerAction from "@/serverActions/actions/user/getUserAction";
 
 interface ProductByIdPageProps {
   params: {
@@ -20,7 +20,7 @@ export default async function ProductByIdPage({
 }: ProductByIdPageProps) {
   const session: any = await getServerSession(authOptions as AuthOptions);
   const productById = await productByIdServerAction(params.id);
-  const userData = await getUserById(session.user.id);
+  const userData = await getUserServerAction(session?.user?.id);
 
   const pruductAlreadyInCart : any = await verifyIfProductCartExistServerAction({
     productId: params.id,
@@ -34,7 +34,7 @@ export default async function ProductByIdPage({
   return (
     <main className="flex min-h-screen flex-col font-tenor w-full">
       <ProductCardComponent product={productById} />
-      <AddToCartButton productId={productById.id} userId={session?.user?.id} pruductAlreadyInCart={pruductAlreadyInCart}/>
+      <AddToCartButton productId={productById.id} userId={session?.user?.id} pruductAlreadyInCart={pruductAlreadyInCart} className="h-[3.8rem] rounded-none"/>
       <ProductInfoComponent />
     </main>
   );
