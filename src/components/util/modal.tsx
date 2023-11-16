@@ -40,6 +40,10 @@ export function ModalComponent({
               width: "70%",
               x:0
             }}
+            exit={{
+              width: "0%",
+              x: -100
+            }}
             transition={{
               duration: 1,
               ease: "easeOut",

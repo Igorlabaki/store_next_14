@@ -13,18 +13,7 @@ export const UserAvatarComponent = ({ avatar, size }: UserAvatarProps) => {
   }
 
   return (
-    <motion.div initial={{
-      x:-100,
-      opacity:0
-      }}
-      animate={{
-        x:0,
-        opacity:1
-      }}
-      transition={{
-        duration: 2
-      }}
-    >
+    <div>
       <Image
         src={avatar}
         width={size}
@@ -32,6 +21,6 @@ export const UserAvatarComponent = ({ avatar, size }: UserAvatarProps) => {
         alt="user-avatar"
         className={`rounded-full`}
       />
-    </motion.div>
+    </div>
   );
 };
