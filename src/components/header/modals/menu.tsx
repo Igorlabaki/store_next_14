@@ -58,6 +58,7 @@ export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
               ease: "easeIn",
             }}
             className="bg-white flex-1  min-h-screen h-full py-[3rem] px-[1.20rem] font-tenor flex  flex-col"
+            id="internal_modal"
           >
             <ButtonComponent
               icon={<TfiClose size={15} />}
