@@ -9,7 +9,7 @@ interface CratButtonProps{
     userId: string;
     listLength: number;
 }
-export default function CartButtonComponent({listLength,userId}:CratButtonProps) {
+export default  function CartButtonComponent({listLength,userId}:CratButtonProps) {
   const {push} = useRouter()
   async function handleClick(){
     if(listLength > 0){
