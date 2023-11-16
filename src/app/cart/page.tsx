@@ -1,10 +1,10 @@
-import { BsBag } from "react-icons/bs";
-import { ButtonComponent } from "@/components/util/button";
+
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { AuthOptions, getServerSession } from "next-auth";
 import ListProductsCartComponent from "@/components/cart/listProductsCart";
 import { DividerComponent } from "@/components/util/divider";
 import getCartByUserId from "@/serverActions/actions/cart/getCartById";
+import CartButtonComponent from "@/components/cart/cartButton";
 
 export default async function CartPage() {
   const session: any = await getServerSession(authOptions as AuthOptions);
@@ -15,7 +15,7 @@ export default async function CartPage() {
       <h1 className="text-[1.125rem] tracking-[0.25rem] leading-[2.5rem] mt-[2.5rem] text-center">
         CHEKOUT
       </h1>
-      <div className="px-[1rem] mt-[2rem] flex flex-col justify-start items-start gap-y-[2rem]">
+      <div className="px-[1rem] mt-[2rem] flex flex-col justify-start items-start gap-y-[2rem] h-full">
         <ListProductsCartComponent userCartProductList={useCart?.ProductCart} />
         <DividerComponent />
         <div className="flex w-full justify-between items-center">
@@ -27,11 +27,7 @@ export default async function CartPage() {
           </p>
         </div>
       </div>
-      <ButtonComponent
-        title="BUY NOW"
-        icon={<BsBag size={20} />}
-        className="mt-5 flex justify-center items-center gap-x-5  text-white bg-black h-[3.5rem] w-[90%] mx-auto rounded-sm text-[1rem] leading-[1.625rem]"
-      />
+      <CartButtonComponent listLength={useCart.productCart.length} userId={useCart.userId}/>
     </main>
   );
 }

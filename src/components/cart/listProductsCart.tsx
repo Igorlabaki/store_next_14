@@ -10,11 +10,11 @@ export default function ListProductsCartComponent({
 }: ListProductsCartProps) {
   if (userCartProductList && userCartProductList.length > 0) {
     return (
-      <>
+      <div className="flex-1">
         { userCartProductList.map((item: ProductCartIncludeCartProduct) => {
           return <ItemProductCartList productCart={item} userId={item.cart.userId} key={item.id} />;
         })}
-      </>
+      </div>
     );
   }
 
