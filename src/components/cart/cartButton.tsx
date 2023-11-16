@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { ButtonComponent } from '../util/button';
 import { BsBag } from 'react-icons/bs';
 import deleteCartServerAction from "@/serverActions/actions/cart/deleteCart";
+import toast from "react-hot-toast";
 
 interface CratButtonProps{
     userId: string;
@@ -10,9 +11,10 @@ interface CratButtonProps{
 }
 export default function CartButtonComponent({listLength,userId}:CratButtonProps) {
   const {push} = useRouter()
-  function handleClick(){
+  async function handleClick(){
     if(listLength > 0){
-        deleteCartServerAction(userId)
+        await deleteCartServerAction(userId)
+        toast.success("Thank you for your purchase! Your order has been successfully completed")
     }else{
         push("/product/list")
     }

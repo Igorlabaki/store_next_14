@@ -1,4 +1,4 @@
-"use serve"
+"use server"
 import { prismaClient } from "@/services/prismaClient";
 
 export default async function deleteCartServerAction(userId: string) {
