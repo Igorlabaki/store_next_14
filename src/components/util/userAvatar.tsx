@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { BiUserCircle } from "react-icons/bi";
 
@@ -12,12 +13,25 @@ export const UserAvatarComponent = ({ avatar, size }: UserAvatarProps) => {
   }
 
   return (
-    <Image
-      src={avatar}
-      width={size}
-      height={size}
-      alt="user-avatar"
-      className={`rounded-full`}
-    />
+    <motion.div initial={{
+      x:-100,
+      opacity:0
+      }}
+      animate={{
+        x:0,
+        opacity:1
+      }}
+      transition={{
+        duration: 2
+      }}
+    >
+      <Image
+        src={avatar}
+        width={size}
+        height={size}
+        alt="user-avatar"
+        className={`rounded-full`}
+      />
+    </motion.div>
   );
 };

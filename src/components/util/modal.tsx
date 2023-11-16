@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 export interface PropsNewModal {
@@ -28,9 +29,21 @@ export function ModalComponent({
       onClick={(e) => handleOutsideClick(e)}
       className={`${
         styleExternal ? styleExternal : "bg-black/40"
-      } flex justify-start items-center  w-screen  fixed top-0 right-0 z-40 max-w-[26rem] left-[50%] translate-x-[-50%] overflow-y-scroll-`}
+      } flex justify-start items-center  w-screen  fixed top-0 right-0 z-40 max-w-[26rem] left-[50%] translate-x-[-50%] overflow-hidden`}
     >
-      <div
+      <motion.div
+            initial={{
+              width: "0%",
+              x: -100
+            }}
+            animate={{
+              width: "70%",
+              x:0
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
         id="internal_modal"
         className={twMerge(
           `z-50 flex justify-start items-start  bg-transparent  border-l-[2px] `,
@@ -38,7 +51,7 @@ export function ModalComponent({
         )}
       >
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }
