@@ -8,7 +8,7 @@ interface ListProductsCartProps {
 export default function ListProductsCartComponent({
   userCartProductList,
 }: ListProductsCartProps) {
-  if (userCartProductList) {
+  if (userCartProductList && userCartProductList.length > 0) {
     return (
       <>
         { userCartProductList.map((item: ProductCartIncludeCartProduct) => {

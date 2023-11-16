@@ -1,6 +1,11 @@
+
+"use client"
+import { ButtonComponent } from "@/components/util/button";
+import createBrand from "@/serverActions/prismaRepository/brand/createBrand";
+import createProduct from "@/serverActions/prismaRepository/product/ceateProduct";
 import Link from "next/link";
 
-export async function CarroucelComponent() {
+export  function CarroucelComponent() {
   return (
     <div className="bg-main-banner min-h-[37.5rem] min-w-sreen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center relative">
       <div
