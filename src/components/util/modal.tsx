@@ -45,7 +45,7 @@ export function ModalComponent({
               x: -100
             }}
             transition={{
-              duration: 1,
+              duration: 0.5,
               ease: "easeOut",
             }}
         id="internal_modal"
