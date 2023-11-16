@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Brand } from "@prisma/client";
+import { Brand, User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { GoSignOut } from "react-icons/go";
 import { TfiClose } from "react-icons/tfi";
@@ -23,16 +23,15 @@ import {
 
 interface MenuModalProps {
   brandList: Brand[];
+  userData: User | null;
 }
 
-export function MenuModalComponent({ brandList }: MenuModalProps) {
+export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const { replace } = useRouter();
   function handleCloseModal() {
     setModalIsOpen(false);
   }
-
-  const { userData, refetchUser } = useUserQuery();
 
   return (
     <>
@@ -53,7 +52,7 @@ export function MenuModalComponent({ brandList }: MenuModalProps) {
               duration: 1000,
               ease: "easeIn",
             }}
-            className="bg-white flex-1 w-[16rem] min-h-screen h-full py-[3rem] px-[1.20rem] font-tenor flex  flex-col"
+            className="bg-white flex-1 min-w-[20rem] min-h-screen h-full py-[3rem] px-[1.20rem] font-tenor flex  flex-col"
           >
             <ButtonComponent
               icon={<TfiClose size={15} />}

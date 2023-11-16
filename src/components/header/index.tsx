@@ -11,10 +11,10 @@ export async function HeaderComponent() {
   const session: any = await getServerSession(authOptions as AuthOptions);
   const userData = await getUserServerAction(session?.user.id);
   const brandList = await brandListServerAction();
-
+  
   return (
     <header className="w-full h-[3.75rem] pt-[1.1rem] px-[1rem] flex justify-between items-center">
-      <MenuModalComponent brandList={brandList} />
+      <MenuModalComponent brandList={brandList} userData={userData}/>
       <Link href={"/"}>
         <ImageComponent
           src="/assets/images/logo.png"

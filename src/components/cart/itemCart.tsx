@@ -2,11 +2,13 @@
 
 import { GoPlus } from "react-icons/go";
 import { ImageComponent } from "../util/image";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlineMinusSmall } from "react-icons/hi2";
 import { ProductCartIncludeCartProduct } from "@/types";
 import addProductCartInCartServerAction from "@/serverActions/actions/cart/addProductCartInCart";
 import subtractProductCartInCartServerAction from "@/serverActions/actions/cart/substractProductCartInCart";
 import deleteProductServerAction from "@/serverActions/actions/cart/deleteProduct";
+import { ButtonComponent } from "../util/button";
 
 interface ItemProductCartListProps {
   userId: string;
@@ -36,7 +38,7 @@ export default function ItemProductCartList({
   return (
     <div
       key={productCart.id}
-      className="flex justify-start items-start gap-x-[0.5rem]"
+      className="flex justify-start items-start gap-x-[0.5rem] relative w-full"
     >
       <ImageComponent
         src={productCart.product.imageUrl}
@@ -44,7 +46,12 @@ export default function ItemProductCartList({
         h="h-[8.33rem]"
         w="w-[6.25rem]"
       />
-      <div className="flex flex-col gap-y-[1rem] h-[8.33rem]">
+        <ButtonComponent
+          className="absolute top-2 right-2 text-red-300 hover:scale-105 active:scale-95  h-6 w-6 rounded-full flex justify-center items-center"
+          icon={<FaRegTrashAlt />}
+          onClick={() => deleteProductServerAction(productCart)}
+        />
+      <div className="flex flex-col relative gap-y-[1rem] h-[8.33rem]">
         <p className="text-[0.875rem] tracking-[0.125rem] leading-[1.25rem]">
           {productCart.product.name}
         </p>
@@ -54,7 +61,7 @@ export default function ItemProductCartList({
               className={"text-[1rem] cursor-pointer"}
               onClick={() => {
                 if (productCart.quantity === 1) {
-                    deleteProductServerAction(productCart);
+                  deleteProductServerAction(productCart);
                 } else {
                   minusProduct();
                 }
@@ -66,7 +73,6 @@ export default function ItemProductCartList({
               onClick={() => addProduct()}
             />
           </div>
-          <p onClick={() => deleteProductServerAction(productCart)}>remove</p>
           <p className="text-[1rem] text-custom-orange">
             ${parseInt(productCart.product.price) * productCart.quantity}
           </p>

@@ -27,6 +27,7 @@ export default async function ProductByIdPage({
     cartId: userData?.Cart?.id,
   });
 
+  
   if (!productById) {
     return <NotFoundComponent />;
   }

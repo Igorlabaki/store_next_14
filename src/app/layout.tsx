@@ -37,17 +37,17 @@ export default async function RootLayout({
       <body
         className={`${bondoni_nova.variable} ${tenor_sans.variable} max-w-[25rem] mx-auto border-x-2 border-black/20 text-black `}
       >
-        <ProviderNextAuth>
           <ReactQueryProvider>
             <UserProvider>
+              <ProviderNextAuth>
               <HeaderComponent />
               <ToasterContext />
               {children}
               <div id="modal-root" />
               <FooterComponent />
+              </ProviderNextAuth>
             </UserProvider>
           </ReactQueryProvider>
-        </ProviderNextAuth>
       </body>
     </html>
   );

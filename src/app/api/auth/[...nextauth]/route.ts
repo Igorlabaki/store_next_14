@@ -6,6 +6,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaUserRepository } from '@/backend/repository/inPrisma/prismaUserRepository';
 import { authenticateAccountFactory } from '@/backend/useCase/auth/authenticateAccountCase/authenticateAccountFactory';
+import { queryClient } from '@/services/reactQueryClient';
+import { revalidatePath } from 'next/cache';
 
 export const authOptions = {
   adapter: PrismaAdapter(prismaClient),
@@ -35,7 +37,7 @@ export const authOptions = {
           email: credentials?.email,
           password: credentials?.password,
         });
-
+  
         return userFind;
       },
     }),

@@ -10,7 +10,7 @@ export default function ListProductsCartComponent({
 }: ListProductsCartProps) {
   if (userCartProductList && userCartProductList.length > 0) {
     return (
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col justify-start items-start gap-y-4 w-full">
         { userCartProductList.map((item: ProductCartIncludeCartProduct) => {
           return <ItemProductCartList productCart={item} userId={item.cart.userId} key={item.id} />;
         })}

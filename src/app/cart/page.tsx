@@ -15,7 +15,7 @@ export default async function CartPage() {
       <h1 className="text-[1.125rem] tracking-[0.25rem] leading-[2.5rem] mt-[2.5rem] text-center">
         CHEKOUT
       </h1>
-      <div className="px-[1rem] mt-[2rem] flex flex-col justify-start items-start gap-y-[2rem] h-full">
+      <div className="px-[1rem] mt-[2rem] flex flex-col justify-start items-start gap-y-[2rem] h-full w-full">
         <ListProductsCartComponent userCartProductList={useCart?.ProductCart} />
         <DividerComponent />
         <div className="flex w-full justify-between items-center">
@@ -27,7 +27,7 @@ export default async function CartPage() {
           </p>
         </div>
       </div>
-      <CartButtonComponent listLength={useCart.productCart.length} userId={useCart.userId}/>
+      <CartButtonComponent listLength={useCart?.ProductCart?.length} userId={useCart?.userId}/>
     </main>
   );
 }

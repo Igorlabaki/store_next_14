@@ -9,6 +9,7 @@ import { InputComponent } from '../../util/input';
 
 import { UseAuthenticateFormHooks } from '@/hooks/formHooks/authenticateFormHooks';
 import { type AuthenticateFormData } from '@/zod/types/authenticateFormZodType';
+import { revalidatePath } from 'next/cache';
 
 type AuthenticateTypeProps = {
   handleFormErrorShake: () => void;
@@ -19,7 +20,7 @@ export default function AuthenticateComponent({
   setFormType,
   handleFormErrorShake,
 }: AuthenticateTypeProps) {
-  const { replace } = useRouter();
+  const { push,replace, refresh } = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { authenticateErrors, authenticateTrigger, register, handleSubmit } =
@@ -33,9 +34,10 @@ export default function AuthenticateComponent({
     }).then((resp: any) => {
       if (resp.error) {
         toast.error(resp.error);
+      }else{
+        push("/")
+        refresh()
       }
-
-      replace('/');
     });
     setIsLoading(false);
   };

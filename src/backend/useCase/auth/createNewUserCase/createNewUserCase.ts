@@ -25,18 +25,11 @@ class CreateNewUserCase {
       return newUser;
     }
 
-    if (entityExists?.password) {
+    if (entityExists?.email) {
       const error = new Error();
       error.message = 'Sorry, this email address is already registered.';
       return error;
     }
-
-    const updateUser = await this.userRepository.updatePassword({
-      id: entityExists.id,
-      password: userInput.password,
-    });
-
-    return updateUser;
   }
 }
 

@@ -33,11 +33,11 @@ export default function RegisterComponent({
     
         if (resp.data?.message) {
           toast.error(resp.data?.message);
-        }
-        if (resp.data?.id) {
+        }else{
           toast.success('Your new account has been successfully created. Welcome to our platform.');
-          setTimeout(() => setFormType('signIn'), 2500);
+          setTimeout(() => setFormType('signIn'), 1500);
         }
+      
       });
     setIsLoading(false);
   };

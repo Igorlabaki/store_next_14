@@ -1,8 +1,3 @@
-
-"use client"
-import { ButtonComponent } from "@/components/util/button";
-import createBrand from "@/serverActions/prismaRepository/brand/createBrand";
-import createProduct from "@/serverActions/prismaRepository/product/ceateProduct";
 import Link from "next/link";
 
 export  function CarroucelComponent() {
