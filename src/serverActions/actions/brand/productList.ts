@@ -29,7 +29,6 @@ export const brandProductsListAction  = async (brandId: string, search: string |
                 brand: true
             }
         }
-        console.log(search)
         return queryArgs;
     }
 

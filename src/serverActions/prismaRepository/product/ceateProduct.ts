@@ -28,7 +28,7 @@ export default async function createProduct(  ){
         {imageUrl:"https://res.cloudinary.com/dcjkvwbvh/image/upload/v1700129571/fbdzs6un8heznajjjzwi.jpg",name: "Dress Bag", price:"350",fk_brand_id: "9078d686-fb8f-4b1f-b144-44a84d39dff8"},
        ],
     })
-    console.log(x)
+   
     return x
 }
 

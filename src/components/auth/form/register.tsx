@@ -34,10 +34,9 @@ export default function RegisterComponent({
         if (resp.data?.message) {
           toast.error(resp.data?.message);
         }else{
-          toast.success('Your new account has been successfully created. Welcome to our platform.');
+        toast.success('Your new account has been successfully created. Welcome to our platform.');
           setTimeout(() => setFormType('signIn'), 1500);
         }
-      
       });
     setIsLoading(false);
   };
