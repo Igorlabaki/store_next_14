@@ -35,7 +35,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bondoni_nova.variable} ${tenor_sans.variable} max-w-[25rem] mx-auto border-x-2 border-black/20 `}
+        className={`${bondoni_nova.variable} ${tenor_sans.variable} max-w-[25rem] mx-auto border-x-2 border-black/20 text-black `}
       >
         <ProviderNextAuth>
           <ReactQueryProvider>
