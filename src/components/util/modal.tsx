@@ -23,13 +23,20 @@ export function ModalComponent({
   };
 
   return (
-    <div
+    <motion.div
+      exit={{
+        width: "0%",
+      }}
+    transition={{
+      duration: 0.5,
+      ease: "easeOut",
+    }}
       aria-hidden="true"
       id={"modal-root"}
       onClick={(e) => handleOutsideClick(e)}
       className={`${
         styleExternal ? styleExternal : "bg-black/40"
-      } flex justify-start items-center  w-screen  fixed top-0 right-0 z-40 max-w-[26rem] left-[50%] translate-x-[-50%] overflow-hidden`}
+      } flex justify-start items-center  w-screen  fixed top-0 right-0 z-40 max-w-[25rem] left-[50%] translate-x-[-50%] overflow-hidden`}
     >
       <motion.div
             initial={{
@@ -56,6 +63,6 @@ export function ModalComponent({
       >
         {children}
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
