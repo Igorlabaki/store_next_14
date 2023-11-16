@@ -48,7 +48,7 @@ export async function ProductPageListItemComponent({
             productId={product.id}
             userId={session?.user?.id}
             pruductAlreadyInCart={pruductAlreadyInCart}
-            className="h-[2.5rem]    bg-black"
+            className="h-[2.5rem] text-sm   bg-black"
           />
         </div>
       </div>
