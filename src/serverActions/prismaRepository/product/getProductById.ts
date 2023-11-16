@@ -8,13 +8,10 @@ interface GetProductByIdParams{
 }
 
 export default async function getProductById({productId}:GetProductByIdParams) {
-  const productById: ProductIncludesBrand | null =
+  const productById =
     await prismaClient.product.findFirst({
       where: {
         id: productId,
-      },
-      include: {
-        brand: true,
       },
     });
 

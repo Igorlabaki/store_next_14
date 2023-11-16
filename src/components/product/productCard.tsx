@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ProductIncludesBrand } from "@/types";
+import { Brand, Product, User, ProductCart,Cart } from "@prisma/client";
 import { ImageComponent } from "../util/image";
 
 interface ProductCardProd {
-  product: ProductIncludesBrand;
+  product: Product;
 }
 
 export function ProductCardComponent({ product }: ProductCardProd) {
@@ -18,14 +18,6 @@ export function ProductCardComponent({ product }: ProductCardProd) {
       />
       <div className="mt-[1.2rem] flex flex-col gap-y-[1rem]">
         <p className="text-[1rem] tracking-[0.25rem]">{product.name}</p>
-        <Link
-          href={`brand/${product.brand.id}`}
-          className="hover:underline duration-700"
-        >
-          <p className="text-[0.8rem] tracking-[0.25rem]">
-            {product.brand.name}
-          </p>
-        </Link>
         <p className="text-[1.125rem] text-custom-orange">{product.price}$</p>
       </div>
     </div>

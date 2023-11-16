@@ -19,7 +19,7 @@ export default async function ProductByIdPage({
   params,
 }: ProductByIdPageProps) {
   const session: any = await getServerSession(authOptions as AuthOptions);
-  const productById = await productByIdServerAction(params.id);
+  const productById = await productByIdServerAction(params?.id);
   const userData = await getUserServerAction(session?.user?.id);
 
   const pruductAlreadyInCart : any = await verifyIfProductCartExistServerAction({

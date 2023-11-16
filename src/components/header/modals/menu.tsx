@@ -79,9 +79,8 @@ export function MenuModalComponent({ brandList }: MenuModalProps) {
                 title={userData ? "Sign Out" : "Sign In"}
                 icon={<GoSignOut size={20} />}
                 onClick={() => {
-                  if (userData) {
-                    signOut();
-                    refetchUser();
+                  if (userData?.id) {
+                   console.log("dijeiojdeio")
                   } else {
                     replace("/auth");
                   }
