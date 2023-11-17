@@ -20,6 +20,7 @@ import {
   AiFillYoutube,
   AiOutlineTwitter,
 } from "react-icons/ai";
+import { revalidatePath } from "next/cache";
 
 interface MenuModalProps {
   brandList: Brand[] | null;
@@ -87,6 +88,8 @@ export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
                 onClick={() => {
                   if (userData?.id) {
                    signOut();
+                   revalidatePath("/cart")
+                   revalidatePath("/")
                   } else {
                     replace("/auth");
                   }
