@@ -15,7 +15,7 @@ class RemoveProductCartCase {
     const cartByid = await this.cartRepository.getById(productCartById?.fk_id_cart as string)
 
     if(productCartById && cartByid){
-      await this.cartRepository.updateTotal({cartId: cartByid?.id as string, total: cartByid?.total + parseInt(productCartById?.product.price) * productCartById?.quantity})
+      await this.cartRepository.updateTotal({cartId: cartByid?.id as string, total: cartByid?.total - parseInt(productCartById?.product.price) * productCartById?.quantity})
 
       await this.productCartRepository.delete(productCartById.id)
 
