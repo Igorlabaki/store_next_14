@@ -3,8 +3,8 @@ import { RemoveProductCartCase } from './removeProductCase';
 class RemoveProductController {
   constructor(private removeProductCartCase: RemoveProductCartCase) {}
 
-  async handle(userId: string, productId: string, quantity: number) {
-    const removeProduct = await this.removeProductCartCase.execute(userId, productId, quantity);
+  async handle(productCartId: string) {
+    const removeProduct = await this.removeProductCartCase.execute(productCartId);
 
     return removeProduct;
   }

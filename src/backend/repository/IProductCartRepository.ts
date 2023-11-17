@@ -20,7 +20,7 @@ export interface IUpdateQuantity {
 export interface IProductCartRepository {
   list: (search?:string) => Promise<ProductCart[] | null>;
   delete: (reference: string) => Promise<ProductCartIncludeCartProduct | null>;
-  getById: (reference: string) => Promise<ProductCart | null>;
+  getById: (reference: string) => Promise<ProductCartIncludeCartProduct | null>;
   listByCartId: (cartId:string) => Promise<ProductCart[] | null>;
   updateQuantity: (reference: IUpdateQuantity) => Promise<ProductCartIncludeCartProduct | null>;
   create: (reference: ICreateProductCartParams) => Promise<ProductCartIncludeCartProduct | null>;

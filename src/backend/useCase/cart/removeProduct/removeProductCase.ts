@@ -8,36 +8,22 @@ class RemoveProductCartCase {
     private productCartRepository: IProductCartRepository
   ) {}
 
-  async execute(userId: string, productId: string, quantity: number) {
+  async execute(productCartId: string) {
 
-    const cartAlreadyExist  = await this.cartRepository.getByUserId(userId);
+    const productCartById  = await this.productCartRepository.getById(productCartId);
+    
+    const cartByid = await this.cartRepository.getById(productCartById?.fk_id_cart as string)
+
+    if(productCartById && cartByid){
+      await this.cartRepository.updateTotal({cartId: cartByid?.id as string, total: cartByid?.total + parseInt(productCartById?.product.price) * productCartById?.quantity})
+
+      await this.productCartRepository.delete(productCartById.id)
+
+      revalidatePath("/cart");
   
-    if (cartAlreadyExist) {
-      const productAlreadyInCart =
-      await this.productCartRepository.verifyIfProductAlreadyInCart({
-        cartId: cartAlreadyExist.id,
-        productId,
-      });
-
-      if(productAlreadyInCart){
-        const productCartUpdated =
-          await this.productCartRepository.updateQuantity({
-            producCartId: productAlreadyInCart.id,
-            quantity,
-          });
-
-        await this.cartRepository.updateTotal({
-          cartId: cartAlreadyExist.id,
-          total:
-          cartAlreadyExist.total - parseInt(productAlreadyInCart.product.price),
-        });
-
-        revalidatePath("/cart");
-
-        return productCartUpdated;
-      }
-
+      return productCartById;
     }
+    return null
   }
 }
 

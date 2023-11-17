@@ -1,8 +1,6 @@
 import { PrismaClient, ProductCart } from '@prisma/client';
 import { ICreateProductCartParams, IProductCartRepository, IUpdateQuantity, IVerifyIfProductAlreadyInCratParams } from '../IProductCartRepository';
 import { ProductCartIncludeCartProduct } from '@/types';
-import { IListByBrandId } from '../IProductRepository';
-
 
 export class PrismaProductCartRepository implements IProductCartRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -42,11 +40,15 @@ export class PrismaProductCartRepository implements IProductCartRepository {
     });
   }
 
-  async getById(reference: string): Promise<ProductCart | null> {
+  async getById(reference: string): Promise<ProductCartIncludeCartProduct | null> {
     return await this.prisma.productCart.findFirst({
       where: {
         id: reference,
       },
+      include:{
+        cart: true,
+        product: true
+      }
     });
   }
 

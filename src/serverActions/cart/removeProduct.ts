@@ -1,12 +1,12 @@
 "use server";
 
-import { deleteProductCartFactory } from "@/backend/useCase/ProductCart/deleteCase/deleteFactory";
+import { removeProductCartFactory } from "@/backend/useCase/cart/removeProduct/removeProductFactory";
 import { revalidatePath } from "next/cache";
 
-export default async function deleteProductFromCartServerAction(
+export default async function removeProductFromCartServerAction(
   productCartId: string
 ) {
-  const deletedProductCart = await deleteProductCartFactory().handle(
+  const deletedProductCart = await removeProductCartFactory().handle(
     productCartId
   );
 

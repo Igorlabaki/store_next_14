@@ -7,7 +7,7 @@ import { HiOutlineMinusSmall } from "react-icons/hi2";
 import { ProductCartIncludeCartProduct } from "@/types";
 import addProductCartInCartServerAction from "@/serverActions/cart/addProductCartInCart";
 import subtractProductCartInCartServerAction from "@/serverActions/cart/substractProductCartInCart";
-import deleteProductServerAction from "@/serverActions/cart/removeProduct";
+import removeProductFromCartServerAction from "@/serverActions/cart/removeProduct";
 import { ButtonComponent } from "../util/button";
 import { useOptimistic, useState } from "react";
 import { Oval     } from 'react-loading-icons'
@@ -75,7 +75,7 @@ export default function ItemProductCartList({
           icon={<FaRegTrashAlt />}
           onClick={async () => {
             setRemoveProductIsLoading(true)
-            await deleteProductServerAction(productCart.id)
+            await removeProductFromCartServerAction(productCart.id)
             setRemoveProductIsLoading(false)
           }}
         />
@@ -90,7 +90,7 @@ export default function ItemProductCartList({
               onClick={async () => {
                 if (productCart.quantity === 1) {
                   setRemoveProductIsLoading(true)
-                  await deleteProductServerAction(productCart.id);
+                  await removeProductFromCartServerAction(productCart.id);
                   setRemoveProductIsLoading(false)
                 } else {
                   await minusProduct(-1);

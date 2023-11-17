@@ -4,7 +4,6 @@ import { ImageComponent } from "../../util/image";
 import { AuthOptions, getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { AddToCartButton } from "@/components/util/addToBasket";
-import getCartByUserId from "@/serverActions/prismaRepository/cart/getCartByUserId";
 import verifyIfProductCartExistsServerAction from "@/serverActions/productCard/verifyIfProductCartExist";
 import getCartByUserIdServerAction from "@/serverActions/cart/getCartByUserId";
 
