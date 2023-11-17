@@ -51,7 +51,7 @@ export default function ItemProductCartList({
     await subtractProductCartInCartServerAction(
       userId,
       productCart.product.id,
-      optimistickQuantity + amount 
+      optimistickQuantity  
     );
   };
 
