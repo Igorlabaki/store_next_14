@@ -2,14 +2,16 @@ import Link from "next/link";
 import { BsBag } from "react-icons/bs";
 import { ImageComponent } from "../util/image";
 import { MenuModalComponent } from "./modals/menu";
-import getUserServerAction from "@/serverActions/actions/user/getUserAction";
 import { AuthOptions, getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { brandListServerAction } from "@/serverActions/actions/brand/list";
+
+import { getUserByIdFactory } from "@/backend/useCase/user/getUserByIdCase/getUserByIdFactory";
+import { brandListServerAction } from "@/serverActions/brand/list";
+import getUserByIdServerAction from "@/serverActions/user/getUserAction";
 
 export async function HeaderComponent() {
   const session: any = await getServerSession(authOptions as AuthOptions);
-  const userData = await getUserServerAction(session?.user.id);
+  const userData = await getUserByIdServerAction(session?.user?.id);
   const brandList = await brandListServerAction();
   
   return (

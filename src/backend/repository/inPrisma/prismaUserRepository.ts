@@ -1,3 +1,4 @@
+import { UserIncudeCartProductCart } from '@/types';
 import { IUserRepository, IUserParams } from '../IUserRepository';
 
 import { PrismaClient, User } from '@prisma/client';
@@ -21,12 +22,25 @@ export class PrismaUserRepository implements IUserRepository {
     });
   }
 
-  async getById(reference: string): Promise<User | null> {
-    return await this.prisma.user.findFirst({
+  async getById(reference: string): Promise<UserIncudeCartProductCart | null> {
+    const user = await this.prisma.user.findFirst({
       where: {
         id: reference,
       },
+      include: {
+        Cart: {
+          include: {
+            ProductCart: {
+              include: {
+                product: true,
+              },
+            },
+          },
+        },
+      },
     });
+  
+    return user as UserIncudeCartProductCart ;
   }
 
   async updatePassword({ id, password }: IUserParams): Promise<User | null> {

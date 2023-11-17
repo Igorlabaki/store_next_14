@@ -1,10 +1,11 @@
+"use server"
 import { ListProductCase } from './listCase';
 
 class ListProductController {
   constructor(private listProductCase: ListProductCase) {}
 
-  async handle() {
-    const productList = await this.listProductCase.execute();
+  async handle(search?: string) {
+    const productList = await this.listProductCase.execute(search);
 
     return productList;
   }

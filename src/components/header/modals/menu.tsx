@@ -22,7 +22,7 @@ import {
 } from "react-icons/ai";
 
 interface MenuModalProps {
-  brandList: Brand[];
+  brandList: Brand[] | null;
   userData: User | null;
 }
 

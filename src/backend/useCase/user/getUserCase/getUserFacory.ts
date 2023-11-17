@@ -1,7 +1,6 @@
+import { prismaClient } from '@/services/prismaClient';
 import { GetUserCase } from './getUserCase';
 import { GetUserController } from './getUserController';
-
-import { prismaClient } from '@/backend/prisma/client';
 import { PrismaUserRepository } from '@/backend/repository/inPrisma/prismaUserRepository';
 
 export const getUserFactory = () => {

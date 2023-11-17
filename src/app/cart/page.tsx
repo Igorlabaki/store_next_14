@@ -1,14 +1,13 @@
-
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { AuthOptions, getServerSession } from "next-auth";
 import ListProductsCartComponent from "@/components/cart/listProductsCart";
 import { DividerComponent } from "@/components/util/divider";
-import getCartByUserId from "@/serverActions/actions/cart/getCartById";
 import CartButtonComponent from "@/components/cart/cartButton";
+import getCartByUserIdServerAction from "@/serverActions/cart/getCartByUserId";
 
 export default async function CartPage() {
   const session: any = await getServerSession(authOptions as AuthOptions);
-  const useCart: any = await getCartByUserId(session?.user.id);
+  const useCart: any = await getCartByUserIdServerAction(session?.user?.id);
 
   return (
     <main className="flex min-h-screen flex-col font-tenor">
@@ -27,7 +26,10 @@ export default async function CartPage() {
           </p>
         </div>
       </div>
-      <CartButtonComponent listLength={useCart?.ProductCart?.length} userId={useCart?.userId}/>
+      <CartButtonComponent
+        listLength={useCart?.ProductCart?.length}
+        userId={useCart?.userId}
+      />
     </main>
   );
 }

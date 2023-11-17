@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { queryClient } from '@/services/reactQueryClient';
 import { AuthOptions, getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import getUserServerAction from '@/serverActions/actions/user/getUserAction';
+import getUserServerAction from '@/serverActions/user/getUserAction';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
 

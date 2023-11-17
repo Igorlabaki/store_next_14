@@ -1,4 +1,4 @@
-import { IProductRepository } from "@/backend/repository/IProduct";
+import { IProductRepository } from "@/backend/repository/IProductRepository";
 
 class GetByProductNameCase {
   constructor(private ProductRepository: IProductRepository) {}

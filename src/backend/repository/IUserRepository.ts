@@ -1,3 +1,4 @@
+import { UserIncudeCartProductCart } from '@/types';
 import { User } from '@prisma/client';
 
 export interface IUserParams {
@@ -9,7 +10,7 @@ export interface IUserParams {
 }
 
 export interface IUserRepository {
-  getById: (reference: string) => Promise<User | null>;
+  getById: (reference: string) => Promise<UserIncudeCartProductCart | null>;
   delete: (reference: string) => Promise<User | null>;
   create: (reference: IUserParams) => Promise<User | null>;
   verifyIfUserExist: (email: string) => Promise<User | null>;

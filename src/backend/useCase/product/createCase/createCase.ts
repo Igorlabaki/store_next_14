@@ -1,4 +1,4 @@
-import { ICreateProductParams, IProductRepository } from "@/backend/repository/IProduct";
+import { ICreateProductParams, IProductRepository } from "@/backend/repository/IProductRepository";
 
 class CreateProductCase {
   constructor(private ProductRepository: IProductRepository) {}

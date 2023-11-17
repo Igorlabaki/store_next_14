@@ -5,9 +5,9 @@ import { ProductInfoComponent } from "@/components/product/info";
 import { AuthOptions, Session, getServerSession } from "next-auth";
 
 import { ProductCardComponent } from "@/components/product/productCard";
-import { productByIdServerAction } from "@/serverActions/actions/product/getById";
-import verifyIfProductCartExistServerAction from "@/serverActions/actions/productCard/verifyIfProductCartExist";
-import getUserServerAction from "@/serverActions/actions/user/getUserAction";
+import verifyIfProductCartExistServerAction from "@/serverActions/productCard/verifyIfProductCartExist";
+import { getUserByIdFactory } from "@/backend/useCase/user/getUserByIdCase/getUserByIdFactory";
+import { getProductByIdFactory } from "@/backend/useCase/product/getByIdCase/getByIdFactory";
 
 interface ProductByIdPageProps {
   params: {
@@ -19,15 +19,14 @@ export default async function ProductByIdPage({
   params,
 }: ProductByIdPageProps) {
   const session: any = await getServerSession(authOptions as AuthOptions);
-  const productById = await productByIdServerAction(params?.id);
-  const userData = await getUserServerAction(session?.user?.id);
+  const productById = await getProductByIdFactory().handle(params?.id);
+  const userData = await getUserByIdFactory().handle(session?.user?.id);
 
   const pruductAlreadyInCart : any = await verifyIfProductCartExistServerAction({
     productId: params.id,
-    cartId: userData?.Cart?.id,
+    cartId: userData?.Cart?.id as string,
   });
 
-  
   if (!productById) {
     return <NotFoundComponent />;
   }

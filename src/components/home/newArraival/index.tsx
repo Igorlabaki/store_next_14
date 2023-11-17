@@ -3,7 +3,8 @@ import { ArrivalContentComponent } from "./content";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { queryClient } from "@/services/reactQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { productListServerAction } from "@/serverActions/actions/product/list";
+import { productListServerAction } from "@/serverActions/product/list";
+import { listProductFactory } from "@/backend/useCase/product/listCase/listFactory";
 
 export async function NewArraival() {
   await queryClient.prefetchQuery({

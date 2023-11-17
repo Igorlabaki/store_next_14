@@ -1,3 +1,5 @@
+"use server"
+
 import { ListProductCase } from './listCase';
 import { prismaClient } from '@/services/prismaClient';
 import { ListProductController } from './listController';

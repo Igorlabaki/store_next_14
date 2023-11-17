@@ -3,7 +3,7 @@ import { prismaClient } from "@/services/prismaClient";
 import { GetByProductNameController } from "./getByNameController";
 import { PrismaProductRepository } from "@/backend/repository/inPrisma/prismaProductRepository";
 
-export const getByProductFactory = () => {
+export const getProductByNameFactory = () => {
   const prismaRepository = new PrismaProductRepository(prismaClient);
   const getByProductCase = new GetByProductNameCase(prismaRepository);
   const getByProductController = new GetByProductNameController(getByProductCase);

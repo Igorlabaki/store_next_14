@@ -1,7 +1,8 @@
 import { NotFoundComponent } from "@/components/util/notFound";
 
 import { BrandProductListComponent } from "@/components/brand/productList";
-import { brandByIdServerAction } from "@/serverActions/actions/brand/getById";
+import { getBrandByIdFactory } from "@/backend/useCase/brand/getBrandByIdCase/getBrandByIdFactory";
+import { brandListByIdServerAction } from "@/serverActions/brand/getById";
 
 interface BrandByIdPageParams {
   params: {
@@ -14,7 +15,7 @@ export default async function BrandByIdPage({
   params,
   searchParams,
 }: BrandByIdPageParams) {
-  const brandById = await brandByIdServerAction(params.id);
+  const brandById = await brandListByIdServerAction(params.id)
 
   if (!brandById) {
     return <NotFoundComponent />;
@@ -27,7 +28,7 @@ export default async function BrandByIdPage({
       </p>
       <BrandProductListComponent
         brandId={brandById.id}
-        query={searchParams.search}
+        search={searchParams.search}
       />
     </main>
   );

@@ -1,5 +1,5 @@
 import { PrismaClient, Brand } from '@prisma/client';
-import { ICreateBrandParams,IUpdateBrandParams, IBrandRepository } from '../IBrand';
+import { ICreateBrandParams,IUpdateBrandParams, IBrandRepository } from '../IBrandRepository';
 
 export class PrismaBrandRepository implements IBrandRepository {
   constructor(private readonly prisma: PrismaClient) {}

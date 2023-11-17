@@ -1,5 +1,5 @@
 import { CreateProductCase } from "./createCase";
-import { ICreateProductParams } from "@/backend/repository/IProduct";
+import { ICreateProductParams } from "@/backend/repository/IProductRepository";
 
 class CreateProductController {
   constructor(private createProductCase: CreateProductCase) {}

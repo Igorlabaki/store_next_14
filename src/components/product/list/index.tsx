@@ -1,5 +1,5 @@
 import { ProductPageListItemComponent } from "./item";
-import { productListServerAction } from "@/serverActions/actions/product/list";
+import { productListServerAction } from "@/serverActions/product/list";
 
 interface ProductPageListPros {
   query: string | undefined;
@@ -9,7 +9,7 @@ export async function ProductPageListComponent({ query }: ProductPageListPros) {
 
   return (
     <div className="flex flex-col gap-y-[1rem] py-[2rem]">
-      {productList.map((item: any) => {
+      {productList && productList.map((item: any) => {
         return <ProductPageListItemComponent product={item} key={item.id} />;
       })}
     </div>
