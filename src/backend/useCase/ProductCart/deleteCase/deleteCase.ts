@@ -6,7 +6,9 @@ class DeleteProductCartCase {
 
   async execute(reference: string) {
     
-    const deleteProductCart = await this.productCartRepository.delete(reference);
+    const deleteProductCart = await this.productCartRepository.getById(reference);
+
+    await this.productCartRepository.updateQuantity({producCartId: deleteProductCart?.id as string, quantity: deleteProductCart?.quantity as number - 1})
 
     const cart = await this.cartRepository.getById(deleteProductCart?.fk_id_cart as string)
 

@@ -49,9 +49,7 @@ export default function ItemProductCartList({
   const minusProduct = async (amount: number) => {
     addOptimisticQuantity(amount);
     await subtractProductCartInCartServerAction(
-      userId,
       productCart.product.id,
-      optimistickQuantity  
     );
   };
 
