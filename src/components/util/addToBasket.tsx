@@ -58,7 +58,7 @@ export function AddToCartButton({ productId, userId,pruductAlreadyInCart,classNa
 
   return (
     <ButtonComponent
-      title={pruductAlreadyInCart ? "REMOVE FROM BASKET" : "ADD TO BASKET"}
+      title={pruductAlreadyInCart && userId ? "REMOVE FROM BASKET" : "ADD TO BASKET"}
       titleClassname="text-[0.87rem] text-white"
       icon={pruductAlreadyInCart ? <AiOutlineMinus className="text-[1.25rem] text-white" /> : <AiOutlinePlus className="text-[1.25rem] text-white" />}
       className={twMerge(`bg-black w-full  flex items-center px-[1rem] gap-x-[0.5rem] active:scale-95 duration-500`, className)}
