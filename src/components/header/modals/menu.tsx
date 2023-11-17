@@ -89,7 +89,7 @@ export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
                   if (userData?.id) {
                    signOut();
                    revalidatePath("/cart")
-                   revalidatePath("/")
+                   revalidatePath("/product/list")
                   } else {
                     replace("/auth");
                   }
