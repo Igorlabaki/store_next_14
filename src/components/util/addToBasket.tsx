@@ -25,6 +25,7 @@ export function AddToCartButton({ productId, userId,pruductAlreadyInCart,classNa
   const { replace } = useRouter()
 
   async function handleButtonClick(){
+    console.log(userId)
     if(!userId){
       replace("/auth")
     }else{

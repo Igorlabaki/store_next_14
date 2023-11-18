@@ -65,22 +65,22 @@ export class PrismaProductRepository implements IProductRepository {
   }
 
   async list(search?: string): Promise<Product[]> {
-    if (search && search.includes("All")) {
+    if (search?.includes("All")) {
       const listProductd = await this.prisma.product.findMany({
         take: 6,
       });
       return listProductd;
-    }
-
-    const listProductd = await this.prisma.product.findMany({
-      where: {
-        name: {
-          contains: search,
+    } else {
+      const listProductd = await this.prisma.product.findMany({
+        where: {
+          name: {
+            contains: search,
+          },
         },
-      },
-      take: 6,
-    });
-    return listProductd;
+        take: 6,
+      });
+      return listProductd;
+    }
   }
 
   async listByBrandId({
@@ -104,7 +104,7 @@ export class PrismaProductRepository implements IProductRepository {
     } else {
       const allProductsByBrandId = await this.prisma.product.findMany({
         where: {
-          fk_brand_id: brandId
+          fk_brand_id: brandId,
         },
       });
       return allProductsByBrandId;
