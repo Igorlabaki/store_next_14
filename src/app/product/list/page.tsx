@@ -2,7 +2,7 @@ import { SearchComponent } from "@/components/util/search";
 import { ProductPageListComponent } from "@/components/product/list";
 import { PaginationComponent } from "@/components/product/list/pagination";
 import { productListServerAction } from "@/serverActions/product/list";
-import { IListProductReturn } from "@/backend/repository/IProductRepository";
+
 
 export default async function ProductPageList({
   searchParams,
