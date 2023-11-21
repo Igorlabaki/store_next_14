@@ -52,7 +52,10 @@ export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
               opacity: 1
             }}
             exit={{
-              width: "0%"
+              width: 0,
+              transition:{
+                duration: 1
+              }
             }}
             transition={{
               duration: 0.5,
@@ -68,7 +71,7 @@ export function MenuModalComponent({ brandList,userData }: MenuModalProps) {
             />
             <div className="flex flex-col gap-y-4 justify-center items-center gap-x-4">
               <UserAvatarComponent avatar={userData?.image} size={90} />
-              <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}}
+              <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2}}
                className={`${userData ? "flex" : "hidden"} text-sm`}>
                 Bem vindo, {userData?.name}
               </motion.p>

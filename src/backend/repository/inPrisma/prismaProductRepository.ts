@@ -4,6 +4,8 @@ import {
   IUpdateProductParams,
   IProductRepository,
   IListByBrandId,
+  IListProduct,
+  IListProductReturn,
 } from "../IProductRepository";
 
 export class PrismaProductRepository implements IProductRepository {
@@ -64,7 +66,39 @@ export class PrismaProductRepository implements IProductRepository {
     });
   }
 
-  async list(search?: string): Promise<Product[]> {
+  async list({skip,take,search}: IListProduct): Promise<IListProductReturn> {
+    if (typeof(search) === "string") {
+      const listlength = await this.prisma.product.findMany({
+        where: {
+          name: {
+            contains: search,
+          },
+        },
+      });
+
+      const listProductd = await this.prisma.product.findMany({
+        where: {
+          name: {
+            contains: search,
+          },
+        },
+        skip,
+        take: 6,
+      });
+      return {products: listProductd, listLength: listlength.length};
+    } else {
+      const listlength = await this.prisma.product.findMany();
+
+      const listProductd = await this.prisma.product.findMany({
+        skip,
+        take: 6
+      });
+
+      return {products:listProductd, listLength: listlength.length};
+    }
+  }
+
+  async listByName(search?: string): Promise<Product[]> {
     if (search?.includes("All")) {
       const listProductd = await this.prisma.product.findMany({
         take: 6,

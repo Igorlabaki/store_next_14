@@ -3,13 +3,13 @@ import { ArrivalContentComponent } from "./content";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { queryClient } from "@/services/reactQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { productListServerAction } from "@/serverActions/product/list";
+import { productListByNameServerAction } from "@/serverActions/product/listByName";
 import { listProductFactory } from "@/backend/useCase/product/listCase/listFactory";
 
 export async function NewArraival() {
   await queryClient.prefetchQuery({
     queryKey: ["productList"],
-    queryFn: async () => await productListServerAction(undefined),
+    queryFn: async () => await productListByNameServerAction(undefined),
   });
 
   return (

@@ -18,9 +18,19 @@ export interface IListByBrandId {
    brandId: string;
    search?: string;
 }
+export interface IListProduct {
+  search?: string;
+  skip: number;
+  take: number;
+}
+export interface IListProductReturn {
+  products: Product[];
+  listLength: number;
+}
 
 export interface IProductRepository {
-  list: (search?:string) => Promise<Product[] | null>;
+  list: (params:IListProduct) => Promise<IListProductReturn | null>;
+  listByName: (search?:string) => Promise<Product[] | null>;
   listByBrandId: (params :IListByBrandId) => Promise<Product[] | null>;
   delete: (reference: string) => Promise<Product | null>;
   getById: (reference: string) => Promise<Product | null>;

@@ -2,10 +2,10 @@
 
 import { Product } from "@prisma/client";
 import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
+import { motion, useAnimation } from "framer-motion";
 import { ProductItemComponent } from "../product/item";
-import { productListServerAction } from "@/serverActions/product/list";
+import { productListByNameServerAction } from "@/serverActions/product/listByName";
 
 type SelectType = "All" | "Bag" | "Cardigan" | "Dress" | "Coat";
 
@@ -22,7 +22,7 @@ export function ArrivalContentComponent() {
 
   const { data: productList, refetch } = useQuery<Product[]>({
     queryKey: ["productList"],
-    queryFn: async () => await productListServerAction(topic),
+    queryFn: async () => await productListByNameServerAction(topic),
   });
 
   useEffect(() => {

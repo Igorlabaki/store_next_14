@@ -1,13 +1,11 @@
 "use server";
 
+import { IListProduct } from "@/backend/repository/IProductRepository";
 import { listProductFactory } from "@/backend/useCase/product/listCase/listFactory";
-import { revalidatePath } from "next/cache";
 
-export const productListServerAction = async (search: string | undefined) => {
+export const productListServerAction = async (parms:IListProduct) => {
   
-  const listProduct = await listProductFactory().handle(search)
-
-  revalidatePath("/product/list")
+  const listProduct = await listProductFactory().handle(parms)
 
   return listProduct;
 };

@@ -30,9 +30,12 @@ export function ModalComponent({
     animate={{
       opacity:1
     }}
-      exit={{
-        width: "0%",
-      }}
+    exit={{
+      width: 0,
+      transition:{
+        duration: 1
+      }
+    }}
     transition={{
       duration: 0.5,
       ease: "easeOut",
@@ -54,8 +57,10 @@ export function ModalComponent({
               x:0
             }}
             exit={{
-              width: "0%",
-              x: -100
+              width: 0,
+              transition:{
+                duration: 1
+              }
             }}
             transition={{
               duration: 0.5,
