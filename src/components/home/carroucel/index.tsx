@@ -22,9 +22,9 @@ export function CarroucelComponent() {
     }
    }), 2000)
   }, [carroucelIndex])
-  console.log(translateAnimation)
+
   return (
-    <div className="min-h-[37.5rem] min-w-sreen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-start relative overflow-hidden">
+    <div className="min-h-[37.5rem] min-w-sreen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-start relative">
       <div className={`flex justify-center items-center ${translateAnimation} duration-700`}>
         {carroucelImages.map((item: string) => {
           return (
