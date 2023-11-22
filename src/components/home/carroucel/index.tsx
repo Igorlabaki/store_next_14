@@ -11,7 +11,7 @@ export function CarroucelComponent() {
     "/assets/images/carroucel/banner2.png",
     "/assets/images/carroucel/banner5.png",
   ];
-  const translateAnimation = `${carroucelIndex * 25}rem`
+  const translateAnimation = `-translate-x-[${carroucelIndex * 25}rem]`
   
   useEffect(() => {
    setTimeout(() => setCarroucelIndex((prev: number) => {
@@ -25,7 +25,7 @@ export function CarroucelComponent() {
   
   return (
     <div className="min-h-[37.5rem] min-w-sreen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-start relative overflow-hidden">
-      <div className={`flex justify-center items-center -translate-x-[${translateAnimation}] duration-700`}>
+      <div className={`flex justify-center items-center ${translateAnimation} duration-700`}>
         {carroucelImages.map((item: string) => {
           return (
             <ImageComponent
