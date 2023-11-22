@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'main-banner': "url('/assets/images/banner.png')",
+        'main-banner': "url('/assets/images/carroucel/banner2.png')",
       },
       fontFamily: {
         tenor: ['var(--font-tenor-sans)'],
